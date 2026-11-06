@@ -114,35 +114,31 @@ console.log('#5. JavaScript homework example file')
 // console.log(myTriple(4)) // = myMul(3, 4) = 12
 // console.log(myTriple(5)) // = myMul(3, 5) = 15
 
-const counter = (function() {
-  let count = 0;
+let count = 0;
 
-  return function(n) {
+const counter = function(n) {
+  if (arguments.length > 0) {
+    count = n;
+  }
+  return count++;
+}
+
+let factoryCount = 0;
+
+const counterFactory = {
+  value(n) {
     if (arguments.length > 0) {
-      count = n;
+      factoryCount = n;
     }
-    return count++;
-  };
-})();
-
-const counterFactory = (function() {
-  let count = 0;
-
-  return {
-    value(n) {
-      if (arguments.length > 0) {
-        count = n;
-      }
-      return count;
-    },
-    increment() {
-      count++;
-    },
-    decrement() {
-      count--;
-    }
-  };
-})();
+    return factoryCount;
+  },
+  increment() {
+    factoryCount++;
+  },
+  decrement() {
+    factoryCount--;
+  }
+};
 
 const myPrint = (a, b, res) => `${a}^${b}=${res}`;
 
